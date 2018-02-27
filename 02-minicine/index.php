@@ -27,10 +27,10 @@
 					</div> -->
 					<?php while($film = $films3->fetch()) { ?>
 						<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-							<img class="movie-thumbnail" src="img/<?= file_exists('img/covers/'.$film['id'].'.jpg') ? 'covers/'.$film['id'].'.jpg' : 'cover.png'  ?>" />
+							<img class="movie-thumbnail" src="<?= getCover($film['id']) ?>" />
 							<div class="caption">
 								<h2><?= $film['title'] ?></h2>
-								<p><?= $film['synopsis'] ?></p>
+								<p><?= getSynopsis($film['synopsis']) ?></p>
 								<p><a class="btn btn-default" href="movie.php?id=<?= $film['id'] ?>" role="button">Voir la fiche du film &raquo;</a></p>
 							</div>
 						</div>
@@ -53,10 +53,10 @@
 					<?php while($film = $last_movies->fetch(PDO::FETCH_ASSOC)) { ?>
 						<div class="top-movie col-xs-12 col-sm-6 col-md-4 col-lg-3">
 							<div class="thumbnail">
-								<img src="img/<?= file_exists('img/covers/'.$film['id'].'.jpg') ? 'covers/'.$film['id'].'.jpg' : 'cover.png'  ?>" />
+								<img src="<?= getCover($film['id']) ?>" />
 								<div class="caption">
 									<h2><?= $film['title'] ?></h2>
-									<p><?= $film['synopsis'] ?></p>
+									<p><?= getSynopsis($film['synopsis'], 100) ?></p>
 									<p><a class="btn btn-default" href="movie.php?id=<?= $film['id'] ?>" role="button">Voir la fiche du film &raquo;</a></p>
 								</div>
 							</div>

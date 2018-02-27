@@ -5,6 +5,10 @@
 		$movie = $db->prepare('SELECT * FROM movies where id=:id');
 		$movie->execute(array('id' => $_GET['id']));
 		$movie = $movie->fetch(PDO::FETCH_ASSOC);
+
+		//j'explose le champ genre
+		$genres = explode(',', $movie['genres']);
+		debug($genres);
 	}
 
 ?>
@@ -24,7 +28,11 @@
 				<hr>
 
 				<p><strong>Date de sortie :</strong> 09 février 2014 (1h30min)</p>
-				<p><strong>Genres :</strong> Action, Thriller</p>
+				<p><strong>Genres :</strong>
+				<?php foreach($genres as $index => $genre) { ?>
+					<a href="search.php?genre=<?= trim($genre) ?>"><?= $genre ?></a><?php if($index < count($genres)-1) { echo ','; } ?>
+				<?php } ?>
+				</p>
 				<p><strong>Acteurs :</strong> Bob Arctor, John Woo</p>
 				<p><strong>Réalisateurs :</strong> Bob Arctor, John Woo</p>
 				<hr>
